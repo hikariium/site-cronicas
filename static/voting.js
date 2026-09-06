@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const API_URL = window.API_URL;
   window.backgroundMusicDisabled = true;
 
+  const STATIC_PATH = window.STATIC_PATH || '/static';
+
   // Dados dos candidatos
   const candidatesData = {
     presidencia: {
@@ -16,23 +18,23 @@ document.addEventListener('DOMContentLoaded', () => {
         party: 'PT',
         name: 'Suika / Yuugi',
         images: [
-          "/static/suika.png",
-          "/static/yuugi.png"
+          `${STATIC_PATH}/suika.png`,
+          `${STATIC_PATH}/yuugi.png`
         ]
       },
       '14': {
         party: 'Missão',
         name: 'Miko / Shou',
         images: [
-          "/static/miko.png",
-          "/static/shou.png"
+          `${STATIC_PATH}/miko.png`,
+          `${STATIC_PATH}/shou.png`
         ]
       },
       '22': {
         party: 'PL',
         name: 'Reimu / Marisa',
         images: [
-          "/static/reimu-marisa.png"
+          `${STATIC_PATH}/reimu-marisa.png`
         ]
       }
     },
@@ -41,22 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
         party: 'PT',
         name: 'Cirno, Sunny Milk, Star Sapphire, Luna Child',
         images: [
-          "/static/cirno-sunny-star-luna.png",
-          "/static/governador-pt.png"
+          `${STATIC_PATH}/cirno-sunny-star-luna.png`,
+          `${STATIC_PATH}/governador-pt.png`
         ]
       },
       '1400': {
         party: 'Missão',
         name: 'Clownpiece',
         images: [
-          "/static/clownpiece.png"
+          `${STATIC_PATH}/clownpiece.png`
         ]
       },
       '2222': {
         party: 'PL',
         name: 'Suwako',
         images: [
-          "/static/suwako.png"
+          `${STATIC_PATH}/suwako.png`
         ]
       }
     }
@@ -77,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const votoNumero = document.getElementById('votoNumero');
   const nomeRegistro = document.getElementById('nomeRegistro');
   const tokenRegistro = document.getElementById('tokenRegistro');
-  const backgroundAudio = document.getElementById('youtubeAudio');
+  const backgroundAudio = document.getElementById('backgroundAudio');
   const urnaTeclaAudio = document.getElementById('urnaTeclaAudio');
   const urnaVotoAudio = document.getElementById('urnaVotoAudio');
   const candidatePreview = document.getElementById('candidatePreview');
@@ -97,17 +99,26 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const pauseBackgroundAudio = () => {
-    if (!backgroundAudio || !backgroundAudio.contentWindow) return;
-    backgroundAudio.contentWindow.postMessage(JSON.stringify({
-      event: 'command',
-      func: 'pauseVideo',
-      args: [],
-    }), 'https://www.youtube.com');
+    if (!backgroundAudio) return;
+    const tag = backgroundAudio.tagName && backgroundAudio.tagName.toUpperCase();
+    if (tag === 'IFRAME' && backgroundAudio.contentWindow) {
+      backgroundAudio.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), 'https://www.youtube.com');
+      return;
+    }
+    if (tag === 'AUDIO') {
+      try { backgroundAudio.pause(); } catch (e) {}
+    }
   };
 
   pauseBackgroundAudio();
   if (backgroundAudio) {
-    backgroundAudio.addEventListener('load', pauseBackgroundAudio);
+    try {
+      if (backgroundAudio.tagName.toUpperCase() === 'IFRAME') {
+        backgroundAudio.addEventListener('load', pauseBackgroundAudio);
+      } else {
+        backgroundAudio.addEventListener('loadeddata', pauseBackgroundAudio);
+      }
+    } catch (e) {}
   }
 
   // Elementos de navegação

@@ -85,10 +85,10 @@ title: Votação
     <div class="urna-container">
         <div class="urna-audio" aria-hidden="true">
             <audio id="urnaTeclaAudio" preload="auto">
-                <source src="https://cdn.discordapp.com/attachments/1079485209227046993/1544795829913526362/urna-tecla.mp3?ex=6a9b203a&amp;is=6a99ceba&amp;hm=3188725ddc05c800464d99ce03c493123b3099015ac7475f2e600a3f758bea2e&amp;" type="audio/mpeg" />
+                <source src="{{ '/static/urna-tecla.mp3' | relative_url }}" type="audio/mpeg" />
             </audio>
             <audio id="urnaVotoAudio" preload="auto">
-                <source src="https://cdn.discordapp.com/attachments/1079485209227046993/1544795830316441600/urna-voto.mp3?ex=6a9b203a&amp;is=6a99ceba&amp;hm=64cd17797fad8fdda89b087815dcc36cec700054048acfe7f577d28de76e795a&amp;" type="audio/mpeg" />
+                <source src="{{ '/static/urna-voto.mp3' | relative_url }}" type="audio/mpeg" />
             </audio>
         </div>
         <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=85" 

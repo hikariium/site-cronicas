@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-        <link rel="stylesheet" type="text/css" href="{{ '/static/site.css' | relative_url }}" />
+                <link rel="stylesheet" type="text/css" href="{{ '/static/site.css' | relative_url }}" />
                 <script>
                     (function(){
                         try {
@@ -15,8 +15,22 @@
                         } catch (e) {
                             window.API_URL = "https://site-cronicas-api.onrender.com";
                         }
+                        // Expose static path for scripts to build correct URLs on GitHub Pages
+                        try {
+                            window.STATIC_PATH = "{{ '/static' | relative_url }}";
+                        } catch (e) {
+                            window.STATIC_PATH = '/static';
+                        }
                     })();
                 </script>
+                <style>
+                    /* Override hero background with correct base URL (processed by Jekyll) */
+                    .hero-image {
+                        background:
+                            linear-gradient(135deg, rgba(7, 87, 160, .82), rgba(22, 131, 75, .64)),
+                            url("{{ '/static/home-hero.png' | relative_url }}") center/cover;
+                    }
+                </style>
     </head>
 
     <body>
