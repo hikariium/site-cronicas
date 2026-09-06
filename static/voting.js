@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const API_URL = window.API_URL;
   window.backgroundMusicDisabled = true;
 
-  const STATIC_PATH = window.STATIC_PATH || '/static';
+  const STATIC_PATH = window.STATIC_PATH || './static';
 
   // Dados dos candidatos
   const candidatesData = {
