@@ -61,7 +61,7 @@ title: Votação
 
 <section class="voting-section" id="bancoSecao" style="display: none;">
     <div class="banco-container">
-        <img src="{{ '/static/mesarions.png' | relative_url }}" 
+        <img src="{{ '/static/mesarios.png' | relative_url }}" 
              alt="Seção de votação" 
              class="banco-image"
              style="filter: blur(8px);" />
