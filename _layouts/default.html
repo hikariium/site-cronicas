@@ -5,6 +5,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
         <link rel="stylesheet" type="text/css" href="{{ '/static/site.css' | relative_url }}" />
+                <script>
+                    (function(){
+                        try {
+                            var v = window.API_URL;
+                            if (!v || typeof v !== 'string' || !/^https?:\/\//.test(v)) {
+                                window.API_URL = "https://site-cronicas-api.onrender.com";
+                            }
+                        } catch (e) {
+                            window.API_URL = "https://site-cronicas-api.onrender.com";
+                        }
+                    })();
+                </script>
     </head>
 
     <body>
