@@ -18,4 +18,4 @@ title: Resultados
         </section>
     </div>
 </section>
-<script src="{{ '/static/results.js' | relative_url }}"></script>
+<script src="{{ './static/results.js' | relative_url }}"></script>

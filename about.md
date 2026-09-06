@@ -10,7 +10,7 @@ title: Sobre
 </section>
 
 <section class="about-feature">
-    <img src="{{ '/static/sobre-touhou.png' | relative_url }}" alt="Personagem de Touhou Project diante da bandeira do Brasil" />
+    <img src="{{ './static/sobre-touhou.png' | relative_url }}" alt="Personagem de Touhou Project diante da bandeira do Brasil" />
     <div>
         <h2>Suika Ibuki:</h2>
         <p>Candidata do Partido dos Trabalhadores de Gensokyo.</p>

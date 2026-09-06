@@ -10,7 +10,7 @@ title: {{ site.blog_name }}
 </section>
 
 <section class="eremita-feature">
-    <img src="{{ '/static/eremita.png' | relative_url }}" alt="Eremita em meditação" />
+    <img src="{{ './static/eremita.png' | relative_url }}" alt="Eremita em meditação" />
     <div>
         <p class="post-date">Sábio de Gensokyo</p>
         <h2>O Eremita</h2>
