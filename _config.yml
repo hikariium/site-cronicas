@@ -1,0 +1,7 @@
+title: Site Crônicas
+description: Site gerado com Jekyll e GitHub Pages
+baseurl: ""
+url: ""
+theme: minima
+blog_name: Central de Informações
+blog_description: Notícias e atualizações do evento
