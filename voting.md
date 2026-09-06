@@ -47,7 +47,7 @@ title: Votação
 
 <section class="voting-section" id="filaSeccao">
     <div class="queue-container">
-        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85" 
+        <img src="{{ '/static/fila-pra-votar.png' | relative_url }}" 
              alt="Fila de votação" 
              class="queue-image" 
              style="filter: blur(6px);" />
@@ -61,7 +61,7 @@ title: Votação
 
 <section class="voting-section" id="bancoSecao" style="display: none;">
     <div class="banco-container">
-        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85" 
+        <img src="{{ '/static/mesarions.png' | relative_url }}" 
              alt="Seção de votação" 
              class="banco-image"
              style="filter: blur(8px);" />
@@ -91,7 +91,7 @@ title: Votação
                 <source src="{{ './static/urna-voto.mp3' | relative_url }}" type="audio/mpeg" />
             </audio>
         </div>
-        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=85" 
+        <img src="{{ '/static/urna.png' | relative_url }}"  
              alt="Cabine de votação" 
              class="urna-background"
              style="filter: blur(4px);" />
