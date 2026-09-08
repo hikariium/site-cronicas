@@ -1,19 +1,65 @@
-# Site Crônicas (Jekyll + GitHub Pages)
+# API de votação para Render
 
-Setup inicial para executar localmente e publicar com GitHub Pages.
+API em Flask para gerar tokens, validar acesso e registrar votos para apuração.
 
-Requisitos
-- Ruby (>= 2.7)
-- Bundler
+## Endpoints
 
-Instalação e execução local
+- `GET /health`
+- `POST /api/tokens`
+- `POST /api/register-token`
+- `POST /api/tokens/validate`
+- `POST /api/votes`
+- `GET /api/results`
+
+## Exemplo de uso
+
+### Gerar token
 
 ```bash
-gem install bundler
-bundle install
-bundle exec jekyll serve
+curl -X POST https://SEU-SERVICE.onrender.com/api/tokens \
+  -H "Content-Type: application/json" \
+  -d '{"length":18,"upper":true,"lower":true,"numbers":true,"symbols":false}'
 ```
 
-Abra `http://127.0.0.1:4000` para ver o site localmente.
+### Validar token
 
-Quando fizer push para a branch `main` o GitHub Pages irá publicar o site automaticamente (ou use o workflow incluído).
+```bash
+curl -X POST https://SEU-SERVICE.onrender.com/api/tokens/validate \
+  -H "Content-Type: application/json" \
+  -d '{"token":"ABC123"}'
+```
+
+### Registrar voto
+
+```bash
+curl -X POST https://SEU-SERVICE.onrender.com/api/votes \
+  -H "Content-Type: application/json" \
+  -d '{"token":"ABC123","presidencia":"13","governador":"1399"}'
+```
+
+### Consultar apuração
+
+```bash
+curl https://SEU-SERVICE.onrender.com/api/results
+```
+
+## Deploy no Render
+
+1. Crie um novo Web Service no Render.
+2. Conecte este repositório.
+3. Use o comando de start padrão do arquivo `render.yaml`.
+4. Em `Environment Variables`, deixe `DATA_DIR=/data` para manter os dados persistentes.
+
+> Em serviços gratuitos do Render, arquivos salvos em `/data` são persistentes em um volume anexado ao serviço.
+
+## Observação sobre o frontend
+
+O site no Neocities pode chamar esta API usando `fetch()` em endpoints como:
+
+- `/api/tokens`
+- `/api/tokens/validate`
+- `/api/votes`
+- `/api/results`
+
+Como os domínios são diferentes, a API precisa aceitar CORS.
+
